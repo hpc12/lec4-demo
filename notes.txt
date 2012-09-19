@@ -54,6 +54,10 @@ transpose
 - develop in-place transpose
 - kernel
 - note: need odd number of trips :)
+- run with 8192
 
-- dropped half our mem bw
+- dropped most of our mem bw
+- ideas how to recover?
+- contiguity of mem access?
 
+< device lang slides

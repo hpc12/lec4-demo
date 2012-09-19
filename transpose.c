@@ -35,8 +35,8 @@ int main(int argc, char **argv)
   double *b = (double *) malloc(sizeof(double) * size);
   if (!b) { perror("alloc y"); abort(); }
 
-  for (size_t i = 0; i < n; ++i)
-    for (size_t j = 0; j < n; ++j)
+  for (size_t j = 0; j < n; ++j)
+    for (size_t i = 0; i < n; ++i)
       a[i + j*n] = i + j*n;
 
   // --------------------------------------------------------------------------

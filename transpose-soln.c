@@ -35,8 +35,8 @@ int main(int argc, char **argv)
   double *b = (double *) malloc(sizeof(double) * size);
   if (!b) { perror("alloc y"); abort(); }
 
-  for (size_t i = 0; i < n; ++i)
-    for (size_t j = 0; j < n; ++j)
+  for (size_t j = 0; j < n; ++j)
+    for (size_t i = 0; i < n; ++i)
       a[i + j*n] = i + j*n;
 
   // --------------------------------------------------------------------------
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
       2*size*sizeof(double)/1e9/elapsed);
 
   CALL_CL_GUARDED(clEnqueueReadBuffer, (
-        queue, buf_a, /*blocking*/ CL_FALSE, /*offset*/ 0,
+        queue, buf_b, /*blocking*/ CL_FALSE, /*offset*/ 0,
         size * sizeof(double), b,
         0, NULL, NULL));
 
