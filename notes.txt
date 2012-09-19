@@ -1,0 +1,18 @@
+colorscheme evening
+
+04-opencl:
+- run starter (on "Intel")
+- do timings
+
+< queues slides
+
+- put in clFinish
+- do timings again
+- switch to "NVIDIA"
+- add transfer back & check
+- asynch transfer issue
+
+- use global size
+- use work group size
+- show 'invalid wg size'
+- show rounding and check
