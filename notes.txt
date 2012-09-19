@@ -1,8 +1,5 @@
 colorscheme evening
 -------------------------------------------------------------------------------
-FIXME remove plat printer
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
 vec-add
 -------------------------------------------------------------------------------
 - run starter (on "Intel")
@@ -23,13 +20,25 @@ vec-add
 - put in first clFinish
 
 - do timings again
-- comment on memory bw
+- "kinda low"
 
-- switch to "NVIDIA"
+- htop
+- make multi-core version
+  (with no check)
+- add check
+- htop
+- proper multi-core code
+
 - add transfer back & check
 - asynch transfer issue
 
-- use global size
-- use work group size
-- show 'invalid wg size'
-- show rounding and check
+- switch to "NVIDIA"
+- using hardware well?
+- add work groups
+- woo hoo!
+
+- also show get_global_id()
+- what happens if global size not divisble by local size?
+-------------------------------------------------------------------------------
+transpose
+-------------------------------------------------------------------------------
