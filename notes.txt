@@ -1,13 +1,30 @@
 colorscheme evening
-
-04-opencl:
+-------------------------------------------------------------------------------
+FIXME remove plat printer
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+vec-add
+-------------------------------------------------------------------------------
 - run starter (on "Intel")
 - do timings
 
+- ./show-clock-freq
+- ./set-governor performance
+- ./vec-add 10 000 000   10
+
 < queues slides
 
-- put in clFinish
+- put in second clFinish
+
+- ./vec-add 10 000 000   1
+- ./vec-add 10 000 000   10
+- ./vec-add 10 000 000   100
+
+- put in first clFinish
+
 - do timings again
+- comment on memory bw
+
 - switch to "NVIDIA"
 - add transfer back & check
 - asynch transfer issue

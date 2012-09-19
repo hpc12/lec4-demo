@@ -116,7 +116,7 @@ void print_platforms_devices()
     char buf[100];
     CALL_CL_GUARDED(clGetPlatformInfo, (platforms[i], CL_PLATFORM_VENDOR, 
           sizeof(buf), buf, NULL));
-    printf("plat %d: vendor '%s'\n", i, buf);
+    printf("platform %d: vendor '%s'\n", i, buf);
 
     cl_uint dev_count;
     CALL_CL_GUARDED(clGetDeviceIDs, (platforms[i], CL_DEVICE_TYPE_ALL,
@@ -134,7 +134,7 @@ void print_platforms_devices()
       char buf[100];
       CALL_CL_GUARDED(clGetDeviceInfo, (devices[j], CL_DEVICE_NAME,
             sizeof(buf), buf, NULL));
-      printf("  dev %d '%s'\n", j, buf);
+      printf("  device %d: '%s'\n", j, buf);
     }
 
     free(devices);

@@ -15,8 +15,6 @@ int main(int argc, char **argv)
   const long n = atol(argv[1]);
   const int ntrips = atoi(argv[2]);
 
-  print_platforms_devices();
-
   cl_context ctx;
   cl_command_queue queue;
   create_context_on("Intel", NULL, 0, &ctx, &queue, 0);
