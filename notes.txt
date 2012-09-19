@@ -2,10 +2,6 @@ colorscheme evening
 -------------------------------------------------------------------------------
 vec-add
 -------------------------------------------------------------------------------
-- Makefile
-  - dependencies
-  - variables
-
 - run starter (on "Intel")
 - do timings
 
@@ -27,9 +23,9 @@ vec-add
 - "kinda low"
 
 - htop
-- make multi-core version
+- make multi-core version (256 granularity)
   (with no check)
-- add check
+- add < n check
 - htop
 - proper multi-core code
 
@@ -41,8 +37,16 @@ vec-add
 - add work groups
 - woo hoo!
 
+- show 'free flops'
+
 - also show get_global_id()
 - what happens if global size not divisble by local size?
+
+- use 16x16 work group
+
+- Makefile
+  - dependencies
+  - variables
 -------------------------------------------------------------------------------
 transpose
 -------------------------------------------------------------------------------
