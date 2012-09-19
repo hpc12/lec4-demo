@@ -50,3 +50,10 @@ vec-add
 -------------------------------------------------------------------------------
 transpose
 -------------------------------------------------------------------------------
+- walk through
+- develop in-place transpose
+- kernel
+- note: need odd number of trips :)
+
+- dropped half our mem bw
+
