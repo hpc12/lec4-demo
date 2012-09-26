@@ -1,5 +1,27 @@
 colorscheme evening
 -------------------------------------------------------------------------------
+Make demo
+-------------------------------------------------------------------------------
+Use lec4 demo
+
+- Move Makefile out of the way
+- Basic idea: target: dependency 
+- Show that it doesn't rebuild an up-to-date target
+- touch
+- screwed up? make clean
+- make all
+- Variables help centralize information
+
+"$@": target
+"$^": dep
+"$<": first target
+
+- Automatic .c -> .o rules?
+  - include files are dependencies!
+
+"$%": stem
+
+-------------------------------------------------------------------------------
 vec-add
 -------------------------------------------------------------------------------
 - run starter (on "Intel")
