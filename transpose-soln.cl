@@ -47,6 +47,6 @@ kernel void transpose(
 
   l_a[il][jl] = a[i + n*j];
   barrier(CLK_LOCAL_MEM_FENCE);
-  b[ig*BLK + n*jg*BLK + il + jl*n ] = l_a[jl][il] ;
+  b[jg*BLK + n*ig*BLK + il + jl*n ] = l_a[jl][il] ;
 #endif
 }
