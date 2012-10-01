@@ -12,8 +12,8 @@ int main(int argc, char **argv)
     abort();
   }
 
-  const long n = atol(argv[1]);
-  const long size = n*n;
+  const cl_long n = atol(argv[1]);
+  const cl_long size = n*n;
   const int ntrips = atoi(argv[2]);
 
   cl_context ctx;

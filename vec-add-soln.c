@@ -12,7 +12,7 @@ int main(int argc, char **argv)
     abort();
   }
 
-  const long n = atol(argv[1]);
+  const cl_long n = atol(argv[1]);
   const int ntrips = atoi(argv[2]);
 
   print_platforms_devices();
