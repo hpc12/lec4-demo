@@ -103,7 +103,7 @@ int main(int argc, char **argv)
     for (size_t j = 0; j < n; ++j)
       if (a[i + j*n] != b[j + i*n])
       {
-        printf("bad %d %d\n", i, j);
+        printf("bad %zd %zd\n", i, j);
         abort();
       }
 

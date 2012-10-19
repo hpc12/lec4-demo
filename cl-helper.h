@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010 Andreas Kloeckner
+ * Copyright (c) 2010, 2012 Andreas Kloeckner
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,6 +36,14 @@
 #include <CL/cl.h>
 #endif
 
+/* An error check macro for OpenCL.
+ *
+ * Usage:
+ * CHECK_CL_ERROR(status_code_from_a_cl_operation, "function_name")
+ *
+ * It will abort with a message if an error occurred.
+ */
+
 #define CHECK_CL_ERROR(STATUS_CODE, WHAT) \
   if ((STATUS_CODE) != CL_SUCCESS) \
   { \
@@ -46,6 +54,17 @@
     abort(); \
   }
 
+/* A more automated error check macro for OpenCL, for use with clXxxx
+ * functions that return status codes. (Not all of them do, notably 
+ * clCreateXxx do not.)
+ *
+ * Usage:
+ * CALL_CL_GUARDED(clFunction, (arg1, arg2));
+ *
+ * Note the slightly strange comma between the function name and the
+ * argument list.
+ */
+
 #define CALL_CL_GUARDED(NAME, ARGLIST) \
   { \
     cl_int status_code; \
@@ -53,6 +72,13 @@
     CHECK_CL_ERROR(status_code, #NAME); \
   }
 
+/* An error check macro for Unix system functions. If "COND" is true, then the
+ * last system error ("errno") is printed along with MSG, which is supposed to
+ * be a string describing what you were doing.
+ *
+ * Example:
+ * CHECK_SYS_ERROR(dave != 0, "opening hatch");
+ */
 #define CHECK_SYS_ERROR(COND, MSG) \
   if (COND) \
   { \
@@ -60,14 +86,64 @@
     abort(); \
   }
 
+/* Return a string describing the OpenCL error code 'e'.
+ */
 const char *cl_error_to_str(cl_int e);
+
+/* Print a list of available OpenCL platforms and devices
+ * to standard output.
+ */
 void print_platforms_devices();
-void create_context_on(
-    const char *plat_name, const char*dev_name, cl_uint idx,
-    cl_context *ctx, cl_command_queue *queue, int enable_profiling);
+
+/* Create an OpenCL context and a matching command queue on a platform from a
+ * vendor whose name contains 'plat_name' on a device whose name contains
+ * 'dev_name'. Both 'plat_name' and 'dev_name' may be NULL, indicating no
+ * preference in the matter.
+ *
+ * If multiple devices match both 'plat_name' and 'dev_name', then 'idx'
+ * prescribes the number of the device that should be chosen.
+ *
+ * You may also use the special value CHOOSE_INTERACTIVELY to offer the user
+ * a choice. You should use this value for code you turn in.
+ *
+ * This function always succeeds. (If an error occurs, the program
+ * is aborted.
+ *
+ * You can force interactive querying by defining the
+ * CL_HELPER_FORCE_INTERACTIVE macro when compiling cl-helper.c.
+ * You may do so by passing the -DCL_HELPER_FORCE_INTERACTIVE
+ * compiler option.
+ */
+extern const char *CHOOSE_INTERACTIVELY;
+void create_context_on(const char *plat_name, const char*dev_name, cl_uint
+    idx, cl_context *ctx, cl_command_queue *queue, int enable_profiling);
+
+/* Read contents of file 'filename'.
+ * Return as a new string. You must free the string when you're done with it.
+ *
+ * This function always succeeds. (If an error occurs, the program
+ * is aborted.
+ */
 char *read_file(const char *filename);
+
+/* Create a new OpenCL kernel from the code in the string 'knl'.
+ * 'knl_name' is the name of the kernel function, and 'options',
+ * if not NULL, is a string containing compiler flags.
+ *
+ * You must release the resulting kernel when you're done
+ * with it.
+ *
+ * This function always succeeds. (If an error occurs, the program
+ * is aborted.
+ */
 cl_kernel kernel_from_string(cl_context ctx, 
     char const *knl, char const *knl_name, char const *options);
+
+/* Print information about a device, found from either the
+ * queue or the device_id.
+ */
+void print_device_info(cl_device_id device);
+void print_device_info_from_queue(cl_command_queue queue);
 
 #define SET_1_KERNEL_ARG(knl, arg0) \
   CALL_CL_GUARDED(clSetKernelArg, (knl, 0, sizeof(arg0), &arg0));
